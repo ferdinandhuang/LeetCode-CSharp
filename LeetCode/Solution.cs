@@ -125,6 +125,57 @@ namespace LeetCode
         }
 
         /// <summary>
+        /// 4. Median of Two Sorted Arrays
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="nums2"></param>
+        /// <returns></returns>
+        public double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            if(nums1.Length == 0)
+            {
+                if((nums2.Length % 2) != 0)
+                {
+                    return (double)nums2[(nums2.Length / 2) ];
+                }
+                else
+                {
+                    int c = nums2.Length / 2;
+                    return ((double)nums2[c - 1] + (double)nums2[c]) / 2d;
+                }
+            }
+            if (nums2.Length == 0)
+            {
+                if ((nums1.Length % 2) != 0)
+                {
+                    return (double)nums1[(nums1.Length / 2)];
+                }
+                else
+                {
+                    int c = nums1.Length / 2;
+                    return ((double)nums1[c - 1] + (double)nums1[c]) / 2d;
+                }
+            }
+
+            var list1 = nums1.ToList();
+            var list2 = nums2.ToList();
+            var list = new List<int>();
+            list.AddRange(list1);
+            list.AddRange(list2);
+            list = list.OrderBy(o => o).ToList();
+            if((list.Count % 2) != 0)
+            {
+                int c = (list.Count / 2);
+                return (double)list[c];
+            }
+            else
+            {
+                int c = list.Count / 2;
+                return (((double)list[c - 1] + (double)list[c]) / 2d);
+            }
+        }
+
+        /// <summary>
         /// 21. Merge Two Sorted Lists
         /// </summary>
         /// <param name="l1"></param>
